@@ -18,7 +18,7 @@ COPY --from=builder application/application/ ./
 ENV JVM_OPTS="" \
     HALO_WORK_DIR="/root/.halo2" \
     SPRING_CONFIG_LOCATION="optional:classpath:/;optional:file:/root/.halo2/" \
-    TZ=Asia/Shanghai
+    TZ=UTC
 
 RUN ln -sf /usr/share/zoneinfo/$TZ /etc/localtime \
     && echo $TZ > /etc/timezone

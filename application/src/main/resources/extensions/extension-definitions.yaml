@@ -1,6 +1,3 @@
-## TODO: Currently, Halo does not support i18n for configuration file descriptions
-## So Simplified Chinese is temporarily used as the default description language.
-
 apiVersion: plugin.halo.run/v1alpha1
 kind: ExtensionDefinition
 metadata:
@@ -10,8 +7,8 @@ metadata:
 spec:
   className: run.halo.app.security.authentication.login.UsernamePasswordLogoutHandler
   extensionPointName: additional-webfilter
-  displayName: "用户名密码注销处理器"
-  description: "用于用户名和密码认证的注销处理器"
+  displayName: "Username Password Logout Handler"
+  description: "Logout handler for username and password authentication"
 ---
 apiVersion: plugin.halo.run/v1alpha1
 kind: ExtensionDefinition
@@ -22,8 +19,8 @@ metadata:
 spec:
   className: run.halo.app.security.authentication.login.DelegatingLogoutPageGeneratingWebFilter
   extensionPointName: additional-webfilter
-  displayName: "注销页面生成过滤器"
-  description: "用于生成默认的注销页面"
+  displayName: "Logout Page Generating Filter"
+  description: "Generates the default logout page"
 
 ---
 apiVersion: plugin.halo.run/v1alpha1
@@ -33,8 +30,8 @@ metadata:
 spec:
   className: run.halo.app.notification.EmailNotifier
   extensionPointName: reactive-notifier
-  displayName: "邮件通知器"
-  description: "支持通过电子邮件向用户发送通知"
+  displayName: "Email Notifier"
+  description: "Sends notifications to users via email"
 
 ---
 apiVersion: plugin.halo.run/v1alpha1
@@ -44,8 +41,8 @@ metadata:
 spec:
   className: run.halo.app.search.lucene.LuceneSearchEngine
   extensionPointName: search-engine
-  displayName: "Lucene 搜索引擎"
-  description: "Halo 自带的本地搜索引擎"
+  displayName: "Lucene Search Engine"
+  description: "Built-in local search engine for Halo"
   icon: /images/extension-points/lucene.png
 ---
 apiVersion: plugin.halo.run/v1alpha1
@@ -55,8 +52,8 @@ metadata:
 spec:
   className: run.halo.app.content.PostContentThumbnailHandler
   extensionPointName: reactive-post-content-handler
-  displayName: "文章内容缩略图处理"
-  description: "处理文章的 HTML 内容为 img 标签追加缩略图"
+  displayName: "Post Content Thumbnail Handler"
+  description: "Processes post HTML content to append thumbnails to img tags"
 ---
 apiVersion: plugin.halo.run/v1alpha1
 kind: ExtensionDefinition
@@ -65,5 +62,5 @@ metadata:
 spec:
   className: run.halo.app.content.PageContentThumbnailHandler
   extensionPointName: reactive-page-content-handler
-  displayName: "自定义页面内容缩略图处理"
-  description: "处理页面的 HTML 内容为 img 标签追加缩略图"
+  displayName: "Page Content Thumbnail Handler"
+  description: "Processes page HTML content to append thumbnails to img tags"

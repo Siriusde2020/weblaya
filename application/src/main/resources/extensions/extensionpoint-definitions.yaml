@@ -1,15 +1,12 @@
-## TODO: Currently, Halo does not support i18n for configuration file descriptions
-## So Simplified Chinese is temporarily used as the default description language.
-
 apiVersion: plugin.halo.run/v1alpha1
 kind: ExtensionPointDefinition
 metadata:
   name: additional-webfilter
 spec:
   className: run.halo.app.security.AdditionalWebFilter
-  displayName: "附加 Web 过滤器"
+  displayName: "Additional Web Filter"
   type: MULTI_INSTANCE
-  description: "用于 Web 请求的链式处理，可以用来实现跨领域、与应用无关的需求，如安全性、超时等"
+  description: "Chain processing for web requests, used to implement cross-cutting, application-independent concerns such as security, timeouts, etc."
 
 ---
 apiVersion: plugin.halo.run/v1alpha1
@@ -18,9 +15,9 @@ metadata:
   name: reactive-post-content-handler
 spec:
   className: run.halo.app.theme.ReactivePostContentHandler
-  displayName: "文章内容处理器"
+  displayName: "Post Content Handler"
   type: MULTI_INSTANCE
-  description: "扩展在主题侧显示的文章内容"
+  description: "Extends the post content displayed on the theme side"
 
 ---
 apiVersion: plugin.halo.run/v1alpha1
@@ -29,9 +26,9 @@ metadata:
   name: reactive-singlepage-content-handler
 spec:
   className: run.halo.app.theme.ReactiveSinglePageContentHandler
-  displayName: "页面内容处理器"
+  displayName: "Page Content Handler"
   type: MULTI_INSTANCE
-  description: "扩展在主题侧显示的页面内容"
+  description: "Extends the page content displayed on the theme side"
 
 ---
 apiVersion: plugin.halo.run/v1alpha1
@@ -40,9 +37,9 @@ metadata:
   name: comment-widget
 spec:
   className: run.halo.app.theme.dialect.CommentWidget
-  displayName: "评论组件"
+  displayName: "Comment Widget"
   type: SINGLETON
-  description: "扩展在文章页面中显示的评论组件"
+  description: "Extends the comment widget displayed on post pages"
 
 ---
 apiVersion: plugin.halo.run/v1alpha1
@@ -51,9 +48,9 @@ metadata:
   name: username-password-authentication-manager
 spec:
   className: run.halo.app.security.authentication.login.UsernamePasswordAuthenticationManager
-  displayName: "用户名密码认证管理器"
+  displayName: "Username Password Authentication Manager"
   type: SINGLETON
-  description: "扩展用户名密码认证"
+  description: "Extends username and password authentication"
 
 ---
 apiVersion: plugin.halo.run/v1alpha1
@@ -62,9 +59,9 @@ metadata:
   name: reactive-notifier
 spec:
   className: run.halo.app.notification.ReactiveNotifier
-  displayName: "消息通知器"
+  displayName: "Notification Sender"
   type: MULTI_INSTANCE
-  description: "扩展消息通知器，以向用户发送通知"
+  description: "Extends the notification sender to deliver notifications to users"
 
 ---
 apiVersion: plugin.halo.run/v1alpha1
@@ -73,9 +70,9 @@ metadata:
   name: search-engine
 spec:
   className: run.halo.app.search.SearchEngine
-  displayName: "搜索引擎"
+  displayName: "Search Engine"
   type: SINGLETON
-  description: "扩展内容搜索引擎"
+  description: "Extends the content search engine"
 
 ---
 apiVersion: plugin.halo.run/v1alpha1
@@ -84,9 +81,9 @@ metadata:
   name: template-footer-processor
 spec:
   className: run.halo.app.theme.dialect.TemplateFooterProcessor
-  displayName: 页脚标签内容处理器
+  displayName: Footer Tag Content Processor
   type: MULTI_INSTANCE
-  description: "提供用于扩展 <halo:footer/> 标签内容的扩展方式。"
+  description: "Provides an extension mechanism for the <halo:footer/> tag content."
 ---
 apiVersion: plugin.halo.run/v1alpha1
 kind: ExtensionPointDefinition
@@ -94,9 +91,9 @@ metadata:
   name: excerpt-generator
 spec:
   className: run.halo.app.content.ExcerptGenerator
-  displayName: 摘要生成器
+  displayName: Excerpt Generator
   type: SINGLETON
-  description: "提供自动生成摘要的方式扩展，如使用算法提取或使用 AI 生成。"
+  description: "Provides an extension for auto-generating excerpts, such as using algorithmic extraction or AI generation."
 ---
 apiVersion: plugin.halo.run/v1alpha1
 kind: ExtensionPointDefinition
@@ -104,6 +101,6 @@ metadata:
   name: thumbnail-provider
 spec:
   className: run.halo.app.core.attachment.ThumbnailProvider
-  displayName: 图片缩略图生成
+  displayName: Image Thumbnail Generator
   type: MULTI_INSTANCE
-  description: "提供生成图片缩略图的扩展方式"
+  description: "Provides an extension for generating image thumbnails"
