@@ -12,15 +12,29 @@ RUN pnpm run build:packages && pnpm run build
 # Stage 2: Build the Java backend with Gradle
 FROM eclipse-temurin:21-jdk AS backend-builder
 WORKDIR /workspace
+
+# git is needed by the git-properties plugin and providers.exec calls in build.gradle
+RUN apt-get update && apt-get install -y --no-install-recommends git && rm -rf /var/lib/apt/lists/*
+
 COPY gradlew settings.gradle gradle.properties ./
 COPY gradle/ gradle/
 COPY buildSrc/ buildSrc/
 COPY api/ api/
 COPY application/ application/
 COPY platform/ platform/
+
+# The ui project is included in settings.gradle, so Gradle needs its build.gradle
+# and package.json for configuration. Also need packages/ dir (used by idea block).
+COPY ui/build.gradle ui/package.json ui/
+RUN mkdir -p ui/packages
+
 # Copy UI build output into the expected location
 COPY --from=ui-builder /workspace/ui/build/dist/ ui/build/dist/
-RUN chmod +x gradlew && ./gradlew :application:bootJar -x check -x test --no-daemon
+
+# Create a dummy git repo (.git is excluded via .dockerignore)
+RUN git init && git add -A && git -c user.name=build -c user.email=build@local commit -m "build" --quiet
+
+RUN chmod +x gradlew && ./gradlew :application:bootJar -x check -x test -x downloadPluginPresets --no-daemon
 
 # Stage 3: Extract Spring Boot layers
 FROM eclipse-temurin:21-jre AS extractor
