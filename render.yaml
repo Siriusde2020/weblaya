@@ -1,0 +1,18 @@
+# Render Blueprint — https://docs.render.com/blueprint-spec
+services:
+  - type: web
+    name: halo-cms
+    runtime: docker
+    dockerfilePath: ./Dockerfile
+    plan: starter
+    region: oregon
+    healthCheckPath: /actuator/health/readiness
+    disk:
+      name: halo-data
+      mountPath: /data/halo2
+      sizeGB: 1
+    envVars:
+      - key: JVM_OPTS
+        value: -Xmx384m -Xms256m
+      - key: TZ
+        value: UTC

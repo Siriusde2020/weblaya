@@ -39,11 +39,12 @@ COPY --from=extractor /application/snapshot-dependencies/ ./
 COPY --from=extractor /application/application/ ./
 
 ENV JVM_OPTS="-Xmx512m -Xms256m" \
-    HALO_WORK_DIR="/root/.halo2" \
-    SPRING_CONFIG_LOCATION="optional:classpath:/;optional:file:/root/.halo2/" \
+    HALO_WORK_DIR="/data/halo2" \
+    SPRING_CONFIG_LOCATION="optional:classpath:/;optional:file:/data/halo2/" \
     TZ=UTC
 
-RUN ln -sf /usr/share/zoneinfo/$TZ /etc/localtime \
+RUN mkdir -p /data/halo2 && chmod 777 /data/halo2 \
+    && ln -sf /usr/share/zoneinfo/$TZ /etc/localtime \
     && echo $TZ > /etc/timezone
 
 EXPOSE 8090
